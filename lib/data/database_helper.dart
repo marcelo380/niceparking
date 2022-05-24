@@ -9,7 +9,7 @@ class DatabaseHelper {
   static const _databaseName = "nice_parking.db";
   static const _databaseVersion = 1;
 
-  static const _tableEstacionalmento = 'ESTACIONAMENTO';
+  static const tableEstacionalmento = 'ESTACIONAMENTO';
 
   //singleton
   DatabaseHelper._privateConstructor();
@@ -45,13 +45,12 @@ class DatabaseHelper {
 
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-        CREATE TABLE $_tableEstacionalmento(
+        CREATE TABLE $tableEstacionalmento(
         CODIGO INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         NUM_VAGA INTEGER NOT NULL,
         RESPONSAVEL TEXT NOT NULL,
         DATA_ENTRADA TEXT,
-        DATA_SAIDA TEXT,
-        CIDADE_UF TEXT NOT NULL);
+        DATA_SAIDA TEXT);
 ''');
   }
 }
