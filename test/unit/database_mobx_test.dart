@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nice_parking/controllers/parking_mobx_ctrl/parking_mobx_ctrl.dart';
 import 'package:nice_parking/data/database_helper.dart';
+import 'package:nice_parking/models/parking_model.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
@@ -45,6 +46,7 @@ void main() {
     expect(_testInsert.length, 2);
   });
 
+//toDo revisar esse código
   test('Testa inserção de vaga duplicada', () async {
     await parkingMobxCTRL.insertVehicleParkingSlot(
         numVaga: 5, responsavel: 'marcelo');
@@ -55,5 +57,14 @@ void main() {
         parkingMobxCTRL.parkingSlotsList.where((e) => e.numVaga == 5).toList();
 
     expect(_testInsert.length, 1);
+  });
+
+  test('Testa remover veiculo da vaga', () async {
+    await parkingMobxCTRL.removeVehicleSlotParking(numVaga: 5);
+
+    ParkingModel _testRemove =
+        parkingMobxCTRL.parkingSlotsList.firstWhere((e) => e.numVaga == 5);
+
+    expect(_testRemove.empty, true);
   });
 }
