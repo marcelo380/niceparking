@@ -1,9 +1,10 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nice_parking/controllers/parking_mobx_ctrl/parking_mobx_ctrl.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nice_parking/interfaces/parking_repository.dart';
-import 'package:nice_parking/models/parking_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +37,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  ParkingMobxCTRL parkingMobxCTRL = ParkingMobxCTRL();
 
   void _incrementCounter() {
     setState(() {
@@ -55,13 +57,44 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             ElevatedButton(
                 onPressed: () async {
-                  ParkingMobxCTRL parkingMobxCTRL = ParkingMobxCTRL();
                   parkingMobxCTRL.fetchParkingSpacesList();
                 },
-                child: Text("E dale teste"))
+                child: Text("Mostra vagas")),
+            ElevatedButton(
+                onPressed: () async {
+                  parkingMobxCTRL.insertParkingSlot(6, "Marcelo Roberto");
+                },
+                child: Text("Entrada vaga")),
+
+            ElevatedButton(
+                onPressed: () async {
+                  var x = await ParkingSpacesRepository.instance
+                      .selectParkingSlots();
+                  print(x);
+                },
+                child: Text("select db")),
+
+            Observer(builder: (_) {
+              return Expanded(
+                child: ListView.builder(
+                    itemCount: parkingMobxCTRL.parkingSlotsList.length,
+                    itemBuilder: ((context, index) {
+                      return Text(
+                        parkingMobxCTRL.parkingSlotsList[index].numVaga
+                            .toString(),
+                        style: TextStyle(
+                            color:
+                                parkingMobxCTRL.parkingSlotsList[index].empty!
+                                    ? Colors.green
+                                    : Colors.red),
+                      );
+                    })),
+              );
+            }),
+
             // for (var i = 0; i < 10; i++)
             //   Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     mainAxisAlignment: MainAxisAlignment.Fcenter,
             //     children: <Widget>[
             //       Expanded(
             //         child: Container(

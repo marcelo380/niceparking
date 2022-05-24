@@ -9,8 +9,7 @@ class ParkingSpacesRepository {
       ParkingSpacesRepository._privateConstructor();
 
   ///[inUse] referece se a vaga está em uso ou seja dataSaida null
-  Future<List<Map>> selectParkingSlots(
-      {int? numVaga, bool inUse = false}) async {
+  Future<dynamic> selectParkingSlots({int? numVaga, bool inUse = false}) async {
     Database _db = await DatabaseHelper.instance.database;
     try {
       List<Map> result;
@@ -27,24 +26,27 @@ class ParkingSpacesRepository {
 
       return Future.value(result);
     } on DatabaseException catch (e) {
-      return Future.value(mensagemErro("Erro ao tentar exibir os dados", e));
+      return Future.value(
+          mensagemErro("Erro ao tentar exibir os dados", error: e));
     }
   }
 
-  Future<Map<String, dynamic>> insertParkingSlot(
-      ParkingModel parkingModel) async {
+  Future<ReturnMessage> insertParkingSlot(ParkingModel parkingModel) async {
     Database _db = await DatabaseHelper.instance.database;
     try {
-      var res = await _db.insert(
-          DatabaseHelper.tableEstacionalmento, {...parkingModel.toMap()});
+      var _resSelect = await ParkingSpacesRepository.instance
+          .selectParkingSlots(numVaga: parkingModel.numVaga);
 
-      return Future.value({
-        'numero': res,
-        'retorno': mensagemSucesso("Nº ${res}, inserido com sucesso}")
-      });
+      if (_resSelect.isEmpty) {
+        var _res = await _db.insert(
+            DatabaseHelper.tableEstacionalmento, {...parkingModel.toMap()});
+
+        return Future.value(mensagemSucesso(_res.toString()));
+      } else {
+        return Future.value(mensagemErro("Vaga em uso!"));
+      }
     } on DatabaseException catch (e) {
-      return Future.value(
-          {'retorno': mensagemErro("Erro ao inserir comanda", e)});
+      return Future.value(mensagemErro("Erro ao inserir comanda", error: e));
     }
   }
 }
