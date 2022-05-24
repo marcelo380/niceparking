@@ -20,9 +20,10 @@ abstract class _ParkingMobxCTRLBase with Store {
     List<ParkingModel> _listSelectParkingSlots = [];
 
     List<Map> _resSelect = await ParkingSpacesRepository.instance
-        .selectParkingSlots(inUse: false, mockDatabase: mockDatabase);
+        .selectParkingSlots(inUse: true, mockDatabase: mockDatabase);
 
     _resSelect.forEach((element) {
+      print(element);
       _listSelectParkingSlots.add(ParkingModel.fromMap(element));
     });
 
@@ -62,6 +63,21 @@ abstract class _ParkingMobxCTRLBase with Store {
     } else {
       //toDo tratar com flushbar ou snack
       print("Vaga em uso");
+    }
+  }
+
+  @action
+  removeVehicleSlotParking({required int numVaga}) async {
+    int _indexList = parkingSlotsList.indexWhere((e) => e.numVaga == numVaga);
+    parkingSlotsList[_indexList].dataSaida = DateTime.now().toString();
+
+    var _res = await ParkingSpacesRepository.instance.removeVehicleParkingSlot(
+        parkingSlotsList[_indexList],
+        mockDatabase: mockDatabase);
+    if (_res.sucess) {
+      parkingSlotsList[_indexList].empty = true;
+    } else {
+      print("erro ao remover");
     }
   }
 }

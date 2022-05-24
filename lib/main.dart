@@ -75,6 +75,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: Text("select db")),
 
+            ElevatedButton(
+                onPressed: () async {
+                  parkingMobxCTRL.removeVehicleSlotParking(numVaga: 2);
+                },
+                child: Text("remove da vaga")),
+
             Observer(builder: (_) {
               return Expanded(
                 child: ListView.builder(

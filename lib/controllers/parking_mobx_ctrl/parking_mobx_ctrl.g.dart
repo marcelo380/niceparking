@@ -25,6 +25,35 @@ mixin _$ParkingMobxCTRL on _ParkingMobxCTRLBase, Store {
     });
   }
 
+  late final _$initAsyncAction =
+      AsyncAction('_ParkingMobxCTRLBase.init', context: context);
+
+  @override
+  Future init() {
+    return _$initAsyncAction.run(() => super.init());
+  }
+
+  late final _$insertVehicleParkingSlotAsyncAction = AsyncAction(
+      '_ParkingMobxCTRLBase.insertVehicleParkingSlot',
+      context: context);
+
+  @override
+  Future insertVehicleParkingSlot(
+      {required int numVaga, required String responsavel}) {
+    return _$insertVehicleParkingSlotAsyncAction.run(() => super
+        .insertVehicleParkingSlot(numVaga: numVaga, responsavel: responsavel));
+  }
+
+  late final _$removeVehicleSlotParkingAsyncAction = AsyncAction(
+      '_ParkingMobxCTRLBase.removeVehicleSlotParking',
+      context: context);
+
+  @override
+  Future removeVehicleSlotParking({required int numVaga}) {
+    return _$removeVehicleSlotParkingAsyncAction
+        .run(() => super.removeVehicleSlotParking(numVaga: numVaga));
+  }
+
   @override
   String toString() {
     return '''

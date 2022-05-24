@@ -20,14 +20,15 @@ class ParkingSpacesRepository {
     try {
       List<Map> result;
 
-      if (numVaga != null) {
+      if (numVaga != null && inUse == false) {
         result = await _db.query(DatabaseHelper.tableEstacionalmento,
-            where: "NUM_VAGA = $numVaga AND DATA_SAIDA IS NOT NULL");
+            where: "(NUM_VAGA = $numVaga) AND (DATA_SAIDA is NULL)");
       } else if (numVaga == null && inUse == true) {
         result = await _db.query(DatabaseHelper.tableEstacionalmento,
             where: "DATA_SAIDA is NULL");
       } else {
-        result = await _db.query(DatabaseHelper.tableEstacionalmento);
+        result = await _db.query(DatabaseHelper.tableEstacionalmento,
+            where: "DATA_SAIDA IS NOT NULL");
       }
 
       return Future.value(result);
@@ -53,9 +54,36 @@ class ParkingSpacesRepository {
         var _res = await _db.insert(
             DatabaseHelper.tableEstacionalmento, {...parkingModel.toMap()});
 
+        print("${_res} é ${parkingModel.numVaga}");
         return Future.value(mensagemSucesso(_res.toString()));
       } else {
         return Future.value(mensagemErro("Vaga em uso!"));
+      }
+    } on DatabaseException catch (e) {
+      return Future.value(mensagemErro("Erro ao inserir comanda", error: e));
+    }
+  }
+
+  Future<ReturnMessage> removeVehicleParkingSlot(ParkingModel parkingModel,
+      {Database? mockDatabase}) async {
+    Database _db;
+    if (mockDatabase == null) {
+      _db = await DatabaseHelper.instance.database;
+    } else {
+      _db = mockDatabase;
+    }
+    try {
+      List _resSelect = await ParkingSpacesRepository.instance
+          .selectParkingSlots(numVaga: parkingModel.numVaga, mockDatabase: _db);
+
+      if (_resSelect.isNotEmpty) {
+        var _res = await _db.update(
+            DatabaseHelper.tableEstacionalmento, parkingModel.toMap(),
+            where: "CODIGO = ${parkingModel.codigo}");
+
+        return Future.value(mensagemSucesso(_res.toString()));
+      } else {
+        return Future.value(mensagemErro("Vaga não estava em uso!"));
       }
     } on DatabaseException catch (e) {
       return Future.value(mensagemErro("Erro ao inserir comanda", error: e));
