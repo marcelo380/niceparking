@@ -39,15 +39,15 @@ abstract class _ParkingMobxCTRLBase with Store {
   }
 
   @action
-  insertParkingSlot(int numVaga, String responsavel) async {
+  insertVehicleParkingSlot(int numVaga, String responsavel) async {
     ParkingModel _dataInsert = ParkingModel();
     _dataInsert.empty = false;
     _dataInsert.dataEntrada = DateTime.now().toString();
     _dataInsert.numVaga = numVaga;
     _dataInsert.responsavel = responsavel;
 
-    var _res =
-        await ParkingSpacesRepository.instance.insertParkingSlot(_dataInsert);
+    var _res = await ParkingSpacesRepository.instance
+        .insertVehicleParkingSlot(_dataInsert);
 
     if (_res.sucess) {
       _dataInsert.codigo = int.parse(_res.message);

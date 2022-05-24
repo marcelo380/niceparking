@@ -31,7 +31,8 @@ class ParkingSpacesRepository {
     }
   }
 
-  Future<ReturnMessage> insertParkingSlot(ParkingModel parkingModel) async {
+  Future<ReturnMessage> insertVehicleParkingSlot(
+      ParkingModel parkingModel) async {
     Database _db = await DatabaseHelper.instance.database;
     try {
       var _resSelect = await ParkingSpacesRepository.instance
