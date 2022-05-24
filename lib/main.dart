@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:nice_parking/controllers/parking_mobx_ctrl/parking_mobx_ctrl.dart';
+import 'package:nice_parking/interfaces/parking_repository.dart';
+import 'package:nice_parking/models/parking_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,45 +53,51 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            for (var i = 0; i < 10; i++)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      height: 75,
-                      decoration: _myBoxDecorationRight(),
-                      child: Center(
-                        child: Text(
-                          '190$i',
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      height: 75,
-                      decoration: _myBoxDecorationLeft(),
-                      child: Center(
-                        child: Text(
-                          "190" + (i++ + 1).toString(),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            ElevatedButton(
+                onPressed: () async {
+                  ParkingMobxCTRL parkingMobxCTRL = ParkingMobxCTRL();
+                  parkingMobxCTRL.fetchParkingSpacesList();
+                },
+                child: Text("E dale teste"))
+            // for (var i = 0; i < 10; i++)
+            //   Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: <Widget>[
+            //       Expanded(
+            //         child: Container(
+            //           height: 75,
+            //           decoration: _myBoxDecorationRight(),
+            //           child: Center(
+            //             child: Text(
+            //               '190$i',
+            //               style: const TextStyle(
+            //                 color: Colors.black,
+            //                 fontSize: 30,
+            //                 fontWeight: FontWeight.w500,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       Expanded(
+            //         flex: 1,
+            //         child: Container(
+            //           height: 75,
+            //           decoration: _myBoxDecorationLeft(),
+            //           child: Center(
+            //             child: Text(
+            //               "190" + (i++ + 1).toString(),
+            //               style: const TextStyle(
+            //                 color: Colors.black,
+            //                 fontSize: 30,
+            //                 fontWeight: FontWeight.w500,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
           ],
         ),
       ),

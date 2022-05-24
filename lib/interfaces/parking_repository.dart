@@ -8,14 +8,19 @@ class ParkingSpacesRepository {
   static final ParkingSpacesRepository instance =
       ParkingSpacesRepository._privateConstructor();
 
-  Future<List<Map>> selectParkingSlots({int? numVaga}) async {
+  ///[inUse] referece se a vaga está em uso ou seja dataSaida null
+  Future<List<Map>> selectParkingSlots(
+      {int? numVaga, bool inUse = false}) async {
     Database _db = await DatabaseHelper.instance.database;
     try {
       List<Map> result;
 
       if (numVaga != null) {
         result = await _db.query(DatabaseHelper.tableEstacionalmento,
-            where: "num_vaga = $numVaga");
+            where: "NUM_VAGA = $numVaga");
+      } else if (numVaga == null && inUse == true) {
+        result = await _db.query(DatabaseHelper.tableEstacionalmento,
+            where: "DATA_SAIDA is NULL");
       } else {
         result = await _db.query(DatabaseHelper.tableEstacionalmento);
       }
@@ -31,7 +36,7 @@ class ParkingSpacesRepository {
     Database _db = await DatabaseHelper.instance.database;
     try {
       var res = await _db.insert(
-          DatabaseHelper.tableEstacionalmento, {...parkingModel.toJson()});
+          DatabaseHelper.tableEstacionalmento, {...parkingModel.toMap()});
 
       return Future.value({
         'numero': res,
