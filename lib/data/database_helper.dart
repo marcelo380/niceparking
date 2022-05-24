@@ -6,6 +6,9 @@ import 'package:path_provider/path_provider.dart'
     show getApplicationDocumentsDirectory;
 
 class DatabaseHelper {
+  Database? mockDatabase;
+  DatabaseHelper({this.mockDatabase});
+
   static const _databaseName = "nice_parking.db";
   static const _databaseVersion = 1;
 
@@ -18,10 +21,14 @@ class DatabaseHelper {
   // only have a single app-wide reference to the database
   static Database? _database;
   Future<Database> get database async {
-    if (_database != null) return _database!;
-    // lazily instantiate the db the first time it is accessed
-    _database = await _initDatabase();
-    return _database!;
+    if (mockDatabase == null) {
+      if (_database != null) return _database!;
+      // lazily instantiate the db the first time it is accessed
+      _database = await _initDatabase();
+      return _database!;
+    } else {
+      return mockDatabase!;
+    }
   }
 
   _initDatabase() async {
@@ -44,13 +51,15 @@ class DatabaseHelper {
   }
 
   Future _onCreate(Database db, int version) async {
-    await db.execute('''
-        CREATE TABLE $tableEstacionalmento(
+    await db.execute(queryDBCreate);
+  }
+}
+
+String queryDBCreate = '''
+        CREATE TABLE ${DatabaseHelper.tableEstacionalmento}(
         CODIGO INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         NUM_VAGA INTEGER NOT NULL,
         RESPONSAVEL TEXT NOT NULL,
         DATA_ENTRADA TEXT,
         DATA_SAIDA TEXT);
-''');
-  }
-}
+''';

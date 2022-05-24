@@ -9,8 +9,14 @@ class ParkingSpacesRepository {
       ParkingSpacesRepository._privateConstructor();
 
   ///[inUse] referece se a vaga está em uso ou seja dataSaida null
-  Future<dynamic> selectParkingSlots({int? numVaga, bool inUse = false}) async {
-    Database _db = await DatabaseHelper.instance.database;
+  Future<dynamic> selectParkingSlots(
+      {int? numVaga, bool inUse = false, Database? mockDatabase}) async {
+    Database _db;
+    if (mockDatabase == null) {
+      _db = await DatabaseHelper.instance.database;
+    } else {
+      _db = mockDatabase;
+    }
     try {
       List<Map> result;
 
@@ -31,12 +37,17 @@ class ParkingSpacesRepository {
     }
   }
 
-  Future<ReturnMessage> insertVehicleParkingSlot(
-      ParkingModel parkingModel) async {
-    Database _db = await DatabaseHelper.instance.database;
+  Future<ReturnMessage> insertVehicleParkingSlot(ParkingModel parkingModel,
+      {Database? mockDatabase}) async {
+    Database _db;
+    if (mockDatabase == null) {
+      _db = await DatabaseHelper.instance.database;
+    } else {
+      _db = mockDatabase;
+    }
     try {
       var _resSelect = await ParkingSpacesRepository.instance
-          .selectParkingSlots(numVaga: parkingModel.numVaga);
+          .selectParkingSlots(numVaga: parkingModel.numVaga, mockDatabase: _db);
 
       if (_resSelect.isEmpty) {
         var _res = await _db.insert(

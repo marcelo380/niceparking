@@ -57,13 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             ElevatedButton(
                 onPressed: () async {
-                  parkingMobxCTRL.fetchParkingSpacesList();
+                  parkingMobxCTRL.init();
                 },
                 child: Text("Mostra vagas")),
             ElevatedButton(
                 onPressed: () async {
                   parkingMobxCTRL.insertVehicleParkingSlot(
-                      6, "Marcelo Roberto");
+                      numVaga: 2, responsavel: "Marcelo Roberto");
                 },
                 child: Text("Entrada vaga")),
 
