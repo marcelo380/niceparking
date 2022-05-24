@@ -10,6 +10,7 @@ void main() {
   Database? db;
   ParkingMobxCTRL? parkingMobxCTRL = ParkingMobxCTRL();
   sqfliteFfiInit();
+
   setUpAll(() async {
     sqfliteFfiInit();
     db = await databaseFactoryFfi.openDatabase(inMemoryDatabasePath);
@@ -42,5 +43,17 @@ void main() {
         .toList();
 
     expect(_testInsert.length, 2);
+  });
+
+  test('Testa inserção de vaga duplicada', () async {
+    await parkingMobxCTRL.insertVehicleParkingSlot(
+        numVaga: 5, responsavel: 'marcelo');
+    await parkingMobxCTRL.insertVehicleParkingSlot(
+        numVaga: 5, responsavel: 'marcelo');
+
+    List _testInsert =
+        parkingMobxCTRL.parkingSlotsList.where((e) => e.numVaga == 5).toList();
+
+    expect(_testInsert.length, 1);
   });
 }
