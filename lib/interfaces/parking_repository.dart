@@ -22,7 +22,7 @@ class ParkingSpacesRepository {
 
       if (numVaga != null) {
         result = await _db.query(DatabaseHelper.tableEstacionalmento,
-            where: "NUM_VAGA = $numVaga");
+            where: "NUM_VAGA = $numVaga AND DATA_SAIDA IS NOT NULL");
       } else if (numVaga == null && inUse == true) {
         result = await _db.query(DatabaseHelper.tableEstacionalmento,
             where: "DATA_SAIDA is NULL");
