@@ -26,8 +26,7 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
-dependency_overrides:
-  path_provider_android: 2.0.11 
+
 dependencies:
   flutter:
     sdk: flutter
@@ -39,6 +38,7 @@ dependencies:
   mobx: ^2.0.7
   flutter_mobx: ^2.0.6+1
   intl: ^0.17.0
+  flutter_svg: ^1.0.1
   
 dev_dependencies:
   flutter_test:
@@ -62,3 +62,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/svg/
+    - assets/png/

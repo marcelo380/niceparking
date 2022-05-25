@@ -8,7 +8,7 @@
 → Remover veículo da vaga.  
 → Relatório de veículos por data.  
 ### Tecnologias
-FlutteerandoGithubActions
+
 → sqlite  
 → dart / flutter  
 ### Sobre testes
