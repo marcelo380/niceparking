@@ -1,4 +1,5 @@
 ### Sobre
+![NiceParking](https://github.com/marcelo380/niceparking/actions/workflows/ci.yml/badge.svg)
 
 :parking: NiceParking é um projeto que visa controlar as entradas e saida de veículos de um estacionamento.
 ### Funcionalidades 
