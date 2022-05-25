@@ -34,16 +34,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   ParkingSlotMobxCTRL parkingMobxCTRL = ParkingSlotMobxCTRL();
   ReportParkingSlotsMobxCTRL reportParkingSlotsMobxCTRL =
       ReportParkingSlotsMobxCTRL();
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   parkingMobxCTRL.insertVehicleParkingSlot(
                       numVaga: 2, responsavel: "Marcelo Roberto");
                 },
-                child: Text("Entrada vaga")),
+                child: const Text("Entrada vaga")),
 
             ElevatedButton(
                 onPressed: () async {}, child: const Text("select db")),
@@ -143,11 +136,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 

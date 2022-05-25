@@ -59,9 +59,6 @@ abstract class _ParkingSlotMobxCTRLBase with Store {
       int _indexList = parkingSlotsList.indexWhere((e) => e.numVaga == numVaga);
 
       parkingSlotsList[_indexList] = _dataInsert;
-    } else {
-      //toDo tratar com flushbar ou snack
-      print("Vaga em uso");
     }
   }
 
@@ -75,8 +72,6 @@ abstract class _ParkingSlotMobxCTRLBase with Store {
         mockDatabase: mockDatabase);
     if (_res.sucess) {
       parkingSlotsList[_indexList].empty = true;
-    } else {
-      print("erro ao remover");
     }
   }
 }
