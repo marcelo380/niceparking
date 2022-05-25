@@ -9,8 +9,15 @@ class ParkingSlotsReportRepository {
       ParkingSlotsReportRepository._privateConstructor();
 
   Future<ReturnMessage> reportParkingSlots(
-      {required String startDate, required String endDate}) async {
-    Database _db = await DatabaseHelper.instance.database;
+      {required String startDate,
+      required String endDate,
+      Database? mockDatabase}) async {
+    Database _db;
+    if (mockDatabase == null) {
+      _db = await DatabaseHelper.instance.database;
+    } else {
+      _db = mockDatabase;
+    }
     try {
       var _res = await _db.rawQuery(
           "select * from ESTACIONAMENTO WHERE DATA_ENTRADA BETWEEN ('$startDate') AND ('$endDate')");

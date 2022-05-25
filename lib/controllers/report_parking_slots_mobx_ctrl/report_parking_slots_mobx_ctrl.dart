@@ -3,12 +3,15 @@ import 'package:mobx/mobx.dart';
 import 'package:nice_parking/interfaces/report_repository.dart';
 import 'package:nice_parking/models/parking_model.dart';
 import 'package:nice_parking/utils/returns/returns.dart';
+import 'package:sqflite/sqlite_api.dart';
 part 'report_parking_slots_mobx_ctrl.g.dart';
 
 class ReportParkingSlotsMobxCTRL = _ReportParkingSlotsMobxCTRLBase
     with _$ReportParkingSlotsMobxCTRL;
 
 abstract class _ReportParkingSlotsMobxCTRLBase with Store {
+  Database? mockDatabase;
+
   @observable
   ObservableList<ParkingModel> parkinReportList = ObservableList();
 
@@ -30,7 +33,9 @@ abstract class _ReportParkingSlotsMobxCTRLBase with Store {
 
     ReturnMessage _res = await ParkingSlotsReportRepository.instance
         .reportParkingSlots(
-            startDate: _startDateFormated, endDate: _endDateFormated);
+            startDate: _startDateFormated,
+            endDate: _endDateFormated,
+            mockDatabase: mockDatabase);
 
     if (_res.sucess) {
       _res.data.forEach((e) {
