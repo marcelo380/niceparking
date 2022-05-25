@@ -1,7 +1,6 @@
 import 'package:sqflite/sqlite_api.dart';
 
 ReturnMessage returnError(String message, {DatabaseException? error}) {
-  print("exception => $error");
   var result = ReturnMessage(false, message, null);
   return result;
 }

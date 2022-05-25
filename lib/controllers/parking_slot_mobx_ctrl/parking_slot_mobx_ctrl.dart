@@ -23,7 +23,6 @@ abstract class _ParkingSlotMobxCTRLBase with Store {
         .selectParkingSlots(inUse: true, mockDatabase: mockDatabase);
 
     _resSelect.forEach((element) {
-      print(element);
       _listSelectParkingSlots.add(ParkingModel.fromMap(element));
     });
 

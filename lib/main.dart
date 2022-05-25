@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () async {
                   parkingMobxCTRL.init();
                 },
-                child: Text("Mostra vagas")),
+                child: const Text("Mostra vagas")),
             ElevatedButton(
                 onPressed: () async {
                   parkingMobxCTRL.insertVehicleParkingSlot(
@@ -68,27 +68,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text("Entrada vaga")),
 
             ElevatedButton(
-                onPressed: () async {
-                  var x = await ParkingSpacesRepository.instance
-                      .selectParkingSlots();
-                  print(x);
-                },
-                child: Text("select db")),
+                onPressed: () async {}, child: const Text("select db")),
 
             ElevatedButton(
                 onPressed: () async {
                   parkingMobxCTRL.removeVehicleSlotParking(numVaga: 2);
                 },
-                child: Text("remove da vaga")),
+                child: const Text("remove da vaga")),
 
             ElevatedButton(
                 onPressed: () async {
                   reportParkingSlotsMobxCTRL.report(
                       startDate: DateTime.now(), endDate: DateTime.now());
-
-                  print(reportParkingSlotsMobxCTRL.parkinReportList);
                 },
-                child: Text("Report")),
+                child: const Text("Report")),
 
             Observer(builder: (_) {
               return Expanded(
@@ -158,17 +151,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  BoxDecoration _myBoxDecorationRight() => const BoxDecoration(
-        border: Border(
-          right: BorderSide(color: Colors.black),
-          bottom: BorderSide(color: Colors.black),
-        ),
-      );
-  BoxDecoration _myBoxDecorationLeft() => const BoxDecoration(
-        border: Border(
-          left: BorderSide(color: Colors.black),
-          //top: BorderSide(color: Colors.black),
-          bottom: BorderSide(color: Colors.black),
-        ),
-      );
+  // BoxDecoration _myBoxDecorationRight() => const BoxDecoration(
+  //       border: Border(
+  //         right: BorderSide(color: Colors.black),
+  //         bottom: BorderSide(color: Colors.black),
+  //       ),
+  //     );
+  // BoxDecoration _myBoxDecorationLeft() => const BoxDecoration(
+  //       border: Border(
+  //         left: BorderSide(color: Colors.black),
+  //         //top: BorderSide(color: Colors.black),
+  //         bottom: BorderSide(color: Colors.black),
+  //       ),
+  //     );
 }
