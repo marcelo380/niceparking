@@ -1,5 +1,6 @@
 import 'package:nice_parking/data/database_helper.dart';
-import 'package:nice_parking/utils/messages/messages.dart';
+import 'package:nice_parking/utils/returns/returns.dart';
+
 import 'package:sqflite/sqlite_api.dart';
 
 class ParkingSlotsReportRepository {

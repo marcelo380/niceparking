@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-
 import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
+import 'package:nice_parking/controllers/report_parking_slots_mobx_ctrl/report_parking_slots_mobx_ctrl.dart';
 import 'package:nice_parking/interfaces/parking_repository.dart';
 
 void main() {
@@ -36,6 +36,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   ParkingSlotMobxCTRL parkingMobxCTRL = ParkingSlotMobxCTRL();
+  ReportParkingSlotsMobxCTRL reportParkingSlotsMobxCTRL =
+      ReportParkingSlotsMobxCTRL();
 
   void _incrementCounter() {
     setState(() {
@@ -78,6 +80,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   parkingMobxCTRL.removeVehicleSlotParking(numVaga: 2);
                 },
                 child: Text("remove da vaga")),
+
+            ElevatedButton(
+                onPressed: () async {
+                  reportParkingSlotsMobxCTRL.report(
+                      startDate: DateTime.now(), endDate: DateTime.now());
+
+                  print(reportParkingSlotsMobxCTRL.parkinReportList);
+                },
+                child: Text("Report")),
 
             Observer(builder: (_) {
               return Expanded(

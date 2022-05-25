@@ -1,6 +1,7 @@
 import 'package:nice_parking/data/database_helper.dart';
 import 'package:nice_parking/models/parking_model.dart';
-import 'package:nice_parking/utils/messages/messages.dart';
+import 'package:nice_parking/utils/returns/returns.dart';
+
 import 'package:sqflite/sqlite_api.dart';
 
 class ParkingSpacesRepository {
@@ -34,7 +35,7 @@ class ParkingSpacesRepository {
       return Future.value(result);
     } on DatabaseException catch (e) {
       return Future.value(
-          mensagemErro("Erro ao tentar exibir os dados", error: e));
+          returnError("Erro ao tentar exibir os dados", error: e));
     }
   }
 
@@ -54,13 +55,13 @@ class ParkingSpacesRepository {
         var _res = await _db.insert(
             DatabaseHelper.tableEstacionalmento, {...parkingModel.toMap()});
 
-        print("${_res} é ${parkingModel.numVaga}");
-        return Future.value(mensagemSucesso(_res.toString()));
+        return Future.value(returnSucess("Vaga registrada com sucesso!",
+            data: _res.toString()));
       } else {
-        return Future.value(mensagemErro("Vaga em uso!"));
+        return Future.value(returnError("Vaga em uso!"));
       }
     } on DatabaseException catch (e) {
-      return Future.value(mensagemErro("Erro ao inserir comanda", error: e));
+      return Future.value(returnError("Erro ao inserir comanda", error: e));
     }
   }
 
@@ -81,12 +82,13 @@ class ParkingSpacesRepository {
             DatabaseHelper.tableEstacionalmento, parkingModel.toMap(),
             where: "CODIGO = ${parkingModel.codigo}");
 
-        return Future.value(mensagemSucesso(_res.toString()));
+        return Future.value(
+            returnSucess("Vaga liberada com sucesso!", data: _res.toString()));
       } else {
-        return Future.value(mensagemErro("Vaga não estava em uso!"));
+        return Future.value(returnError("Vaga não estava em uso!"));
       }
     } on DatabaseException catch (e) {
-      return Future.value(mensagemErro("Erro ao inserir comanda", error: e));
+      return Future.value(returnError("Erro ao inserir comanda", error: e));
     }
   }
 }

@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
 import 'package:nice_parking/interfaces/report_repository.dart';
 import 'package:nice_parking/models/parking_model.dart';
-import 'package:nice_parking/utils/messages/messages.dart';
+import 'package:nice_parking/utils/returns/returns.dart';
 part 'report_parking_slots_mobx_ctrl.g.dart';
 
 class ReportParkingSlotsMobxCTRL = _ReportParkingSlotsMobxCTRLBase
