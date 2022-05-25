@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nice_parking/controllers/parking_mobx_ctrl/parking_mobx_ctrl.dart';
+import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
+
 import 'package:nice_parking/data/database_helper.dart';
 import 'package:nice_parking/models/parking_model.dart';
 import 'package:sqflite_common/sqlite_api.dart';
@@ -9,7 +10,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   Database? db;
-  ParkingMobxCTRL? parkingMobxCTRL = ParkingMobxCTRL();
+  ParkingSlotMobxCTRL? parkingMobxCTRL = ParkingSlotMobxCTRL();
   sqfliteFfiInit();
 
   setUpAll(() async {

@@ -3,12 +3,12 @@ import 'package:nice_parking/interfaces/parking_repository.dart';
 import 'package:nice_parking/models/parking_model.dart';
 import 'package:sqflite/sqlite_api.dart';
 
-part 'parking_mobx_ctrl.g.dart';
+part 'parking_slot_mobx_ctrl.g.dart';
 
 const mockVagas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-class ParkingMobxCTRL = _ParkingMobxCTRLBase with _$ParkingMobxCTRL;
+class ParkingSlotMobxCTRL = _ParkingSlotMobxCTRLBase with _$ParkingSlotMobxCTRL;
 
-abstract class _ParkingMobxCTRLBase with Store {
+abstract class _ParkingSlotMobxCTRLBase with Store {
   Database? mockDatabase;
 
   @observable

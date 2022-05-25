@@ -1,9 +1,7 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:nice_parking/controllers/parking_mobx_ctrl/parking_mobx_ctrl.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+
+import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
 import 'package:nice_parking/interfaces/parking_repository.dart';
 
 void main() {
@@ -37,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  ParkingMobxCTRL parkingMobxCTRL = ParkingMobxCTRL();
+  ParkingSlotMobxCTRL parkingMobxCTRL = ParkingSlotMobxCTRL();
 
   void _incrementCounter() {
     setState(() {
