@@ -18,6 +18,7 @@ class ParkingSlotComponent extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        key: const Key("slotContainer"),
         decoration: index % 2 == 0
             ? _myBoxDecorationRight(index, lengthList)
             : _myBoxDecorationLeft(index, lengthList),
@@ -42,6 +43,7 @@ class ParkingSlotComponent extends StatelessWidget {
           if (parkingSlotMobxCTRL.parkingSlotsList[index].empty!)
             SvgPicture.asset(
               'assets/svg/rectangle_slot.svg',
+              key: const Key("emptySvg"),
               width: 150,
             ),
           if (!parkingSlotMobxCTRL.parkingSlotsList[index].empty!)
@@ -59,6 +61,7 @@ class ParkingSlotComponent extends StatelessWidget {
             SvgPicture.asset(
               'assets/svg/rectangle_slot.svg',
               width: 150,
+              key: const Key("emptySvg"),
             ),
           if (!parkingSlotMobxCTRL.parkingSlotsList[index].empty!)
             Image.asset(

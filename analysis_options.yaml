@@ -26,6 +26,7 @@ linter:
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
     avoid_function_literals_in_foreach_calls: false
     use_key_in_widget_constructors: false
+    must_be_immutable: false
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
