@@ -22,7 +22,6 @@ abstract class _ParkingSlotMobxCTRLBase with Store {
     List<Map> _resSelect = await ParkingSpacesRepository.instance
         .selectParkingSlots(inUse: true, mockDatabase: mockDatabase);
 
-    print(_resSelect);
     _resSelect.forEach((element) {
       _listSelectParkingSlots.add(ParkingModel.fromMap(element));
     });

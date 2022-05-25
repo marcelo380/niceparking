@@ -2,11 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobx/mobx.dart';
 import 'package:nice_parking/components/parking_slot_component/parking_slot_component.dart';
 import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
 import 'package:nice_parking/models/parking_model.dart';
-import 'package:nice_parking/pages/home_page/home_page.dart';
 
 import '../fixtures.dart';
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
 
+//ignore: must_be_immutable
 class ParkingSlotComponent extends StatelessWidget {
   ParkingSlotMobxCTRL parkingSlotMobxCTRL;
   int index;
