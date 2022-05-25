@@ -31,7 +31,6 @@ class ParkingSpacesRepository {
         result = await _db.query(DatabaseHelper.tableEstacionalmento,
             where: "DATA_SAIDA IS NOT NULL");
       }
-
       return Future.value(result);
     } on DatabaseException catch (e) {
       return Future.value(
