@@ -1,16 +1,19 @@
-# nice_parking
+### Sobre
 
-A new Flutter project.
+:parking: NiceParking é um projeto que visa controlar as entradas e saida de veículos de um estacionamento.
+### Funcionalidades 
 
-## Getting Started
+→ Adicionar veículo na vaga.
+→ Remover veículo da vaga.
+→ Relatório de veículos por data.
+### Tecnologias
 
-This project is a starting point for a Flutter application.
+→ sqlite
+→ dart / flutter
+### sobre testes
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+:white_check_mark: Testa database do sqlite
+:white_check_mark: Testa inserção de veiculo na vaga
+:white_check_mark: Testa inserção de vaga duplicada
+:white_check_mark: Testa remover veiculo da vaga
+:white_check_mark: Testa de relatório
