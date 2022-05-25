@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
+import 'package:nice_parking/controllers/report_parking_slots_mobx_ctrl/report_parking_slots_mobx_ctrl.dart';
 
 import 'package:nice_parking/data/database_helper.dart';
 import 'package:nice_parking/models/parking_model.dart';
@@ -11,6 +12,10 @@ void main() {
 
   Database? db;
   ParkingSlotMobxCTRL? parkingMobxCTRL = ParkingSlotMobxCTRL();
+
+  ReportParkingSlotsMobxCTRL reportParkingSlotsMobxCTRL =
+      ReportParkingSlotsMobxCTRL();
+
   sqfliteFfiInit();
 
   setUpAll(() async {
@@ -18,10 +23,9 @@ void main() {
     db = await databaseFactoryFfi.openDatabase(inMemoryDatabasePath);
     //criar tabela base, isso vai garantir que o sql seja o mesmo
     await db!.execute(queryDBCreate);
-
     //mocka a db
     parkingMobxCTRL.mockDatabase = db;
-
+    reportParkingSlotsMobxCTRL.mockDatabase = db;
     //inicia
     await parkingMobxCTRL.init();
   });
@@ -30,11 +34,11 @@ void main() {
     expect(await db!.getVersion(), 0);
   });
 
-  test('Teste inicialização das vagas ', () async {
+  test('Testa a inicialização das vagas ', () async {
     expect(parkingMobxCTRL.parkingSlotsList.length, 10);
   });
 
-  test('Teste inserção de veiculo na vaga', () async {
+  test('Testa inserção de veiculo na vaga', () async {
     await parkingMobxCTRL.insertVehicleParkingSlot(
         numVaga: 1, responsavel: 'marcelo');
     await parkingMobxCTRL.insertVehicleParkingSlot(
@@ -67,5 +71,13 @@ void main() {
         parkingMobxCTRL.parkingSlotsList.firstWhere((e) => e.numVaga == 5);
 
     expect(_testRemove.empty, true);
+  });
+
+  test('Testa relatorio', () async {
+    await reportParkingSlotsMobxCTRL.report(
+        startDate: DateTime.now(), endDate: DateTime.now());
+    //! atenção: por conta dos testes anteriores o relatorio tem que trazer 3 resultados
+
+    expect(reportParkingSlotsMobxCTRL.parkinReportList.length, 3);
   });
 }
