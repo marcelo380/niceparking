@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -50,8 +49,8 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {
-        parkingMobxCTRL!.insertVehicleParkingSlot(
-            numVaga: 5, responsavel: "Marcelo Roberto");
+        parkingMobxCTRL!
+            .insertVehicleParkingSlot(numVaga: 5, placa: "Marcelo Roberto");
       }),
       body: Observer(builder: (_) {
         return Padding(

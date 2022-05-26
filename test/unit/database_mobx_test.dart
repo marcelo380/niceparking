@@ -40,9 +40,9 @@ void main() {
 
   test('Testa inserção de veiculo na vaga', () async {
     await parkingMobxCTRL.insertVehicleParkingSlot(
-        numVaga: 1, responsavel: 'marcelo');
+        numVaga: 1, placa: 'marcelo');
     await parkingMobxCTRL.insertVehicleParkingSlot(
-        numVaga: 2, responsavel: 'roberto');
+        numVaga: 2, placa: 'roberto');
 
     List _testInsert = parkingMobxCTRL.parkingSlotsList
         .where((e) => e.empty == false)
@@ -54,9 +54,9 @@ void main() {
 //toDo revisar esse código
   test('Testa inserção de vaga duplicada', () async {
     await parkingMobxCTRL.insertVehicleParkingSlot(
-        numVaga: 5, responsavel: 'marcelo');
+        numVaga: 5, placa: 'marcelo');
     await parkingMobxCTRL.insertVehicleParkingSlot(
-        numVaga: 5, responsavel: 'marcelo');
+        numVaga: 5, placa: 'marcelo');
 
     List _testInsert =
         parkingMobxCTRL.parkingSlotsList.where((e) => e.numVaga == 5).toList();

@@ -1,7 +1,7 @@
 class ParkingModel {
   int? codigo;
   int? numVaga;
-  String? responsavel;
+  String? placa;
   String? dataEntrada;
   String? dataSaida;
   bool? empty;
@@ -9,7 +9,7 @@ class ParkingModel {
   ParkingModel(
       {this.codigo,
       this.numVaga,
-      this.responsavel,
+      this.placa,
       this.dataEntrada,
       this.dataSaida,
       this.empty = true});
@@ -17,7 +17,7 @@ class ParkingModel {
   factory ParkingModel.fromMap(Map<dynamic, dynamic> json) => ParkingModel(
         codigo: json["CODIGO"],
         numVaga: json["NUM_VAGA"],
-        responsavel: json["RESPONSAVEL"],
+        placa: json["PLACA"],
         dataEntrada: json["DATA_ENTRADA"],
         dataSaida: json["DATA_SAIDA"],
       );
@@ -25,7 +25,7 @@ class ParkingModel {
   Map<String, dynamic> toMap() => {
         "CODIGO": codigo,
         "NUM_VAGA": numVaga,
-        "RESPONSAVEL": responsavel,
+        "PLACA": placa,
         "DATA_ENTRADA": dataEntrada,
         "DATA_SAIDA": dataSaida,
       };

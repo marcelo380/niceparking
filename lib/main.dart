@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
 import 'package:nice_parking/controllers/report_parking_slots_mobx_ctrl/report_parking_slots_mobx_ctrl.dart';
 import 'package:nice_parking/pages/home_page/home_page.dart';
@@ -57,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
                 onPressed: () async {
                   parkingMobxCTRL.insertVehicleParkingSlot(
-                      numVaga: 2, responsavel: "Marcelo Roberto");
+                      numVaga: 2, placa: "Marcelo Roberto");
                 },
                 child: const Text("Entrada vaga")),
             ElevatedButton(

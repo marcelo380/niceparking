@@ -59,7 +59,7 @@ String queryDBCreate = '''
         CREATE TABLE ${DatabaseHelper.tableEstacionalmento}(
         CODIGO INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         NUM_VAGA INTEGER NOT NULL,
-        RESPONSAVEL TEXT NOT NULL,
+        PLACA TEXT NOT NULL,
         DATA_ENTRADA TEXT,
         DATA_SAIDA TEXT);
 ''';

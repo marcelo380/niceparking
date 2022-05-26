@@ -39,9 +39,9 @@ mixin _$ParkingSlotMobxCTRL on _ParkingSlotMobxCTRLBase, Store {
 
   @override
   Future insertVehicleParkingSlot(
-      {required int numVaga, required String responsavel}) {
-    return _$insertVehicleParkingSlotAsyncAction.run(() => super
-        .insertVehicleParkingSlot(numVaga: numVaga, responsavel: responsavel));
+      {required int numVaga, required String placa}) {
+    return _$insertVehicleParkingSlotAsyncAction.run(
+        () => super.insertVehicleParkingSlot(numVaga: numVaga, placa: placa));
   }
 
   late final _$removeVehicleSlotParkingAsyncAction = AsyncAction(
