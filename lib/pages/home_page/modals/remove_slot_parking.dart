@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:nice_parking/components/confirm_dialog/alert_dialog.dart';
 import 'package:nice_parking/components/contained_button/contained_button.dart';
-import 'package:nice_parking/components/plate_text_field/plate_text_field.dart';
 import 'package:nice_parking/components/typography/typography.dart';
 import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
 import 'package:nice_parking/models/parking_model.dart';

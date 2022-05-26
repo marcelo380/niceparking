@@ -4,6 +4,7 @@ import 'package:nice_parking/interfaces/report_repository.dart';
 import 'package:nice_parking/models/parking_model.dart';
 import 'package:nice_parking/utils/returns/returns.dart';
 import 'package:sqflite/sqlite_api.dart';
+
 part 'report_parking_slots_mobx_ctrl.g.dart';
 
 class ReportParkingSlotsMobxCTRL = _ReportParkingSlotsMobxCTRLBase

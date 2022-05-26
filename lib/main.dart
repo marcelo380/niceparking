@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:jiffy/jiffy.dart';
 import 'package:nice_parking/pages/home_page/home_page.dart';
 
 void main() {

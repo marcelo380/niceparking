@@ -1,6 +1,7 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:io' show Platform;
 
 Future<bool> showAlertDialog({
   required BuildContext context,

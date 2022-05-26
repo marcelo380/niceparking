@@ -1,7 +1,6 @@
 import 'package:nice_parking/data/database_helper.dart';
 import 'package:nice_parking/models/parking_model.dart';
 import 'package:nice_parking/utils/returns/returns.dart';
-
 import 'package:sqflite/sqlite_api.dart';
 
 class ParkingSpacesRepository {
