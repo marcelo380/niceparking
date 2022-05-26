@@ -50,15 +50,13 @@ class CustomTypography {
   static Text title14(
     String content, {
     Color color = Colors.white,
-    TextOverflow overFlow = TextOverflow.ellipsis,
     TextAlign textAlign = TextAlign.left,
   }) =>
       _makeTextComponent(
         content,
         14.0,
-        FontWeight.w700,
+        FontWeight.w600,
         color: color,
-        overFlow: overFlow,
         align: textAlign,
       );
 
