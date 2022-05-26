@@ -38,7 +38,7 @@ mixin _$ParkingSlotMobxCTRL on _ParkingSlotMobxCTRLBase, Store {
       context: context);
 
   @override
-  Future insertVehicleParkingSlot(
+  Future<bool> insertVehicleParkingSlot(
       {required int numVaga, required String placa}) {
     return _$insertVehicleParkingSlotAsyncAction.run(
         () => super.insertVehicleParkingSlot(numVaga: numVaga, placa: placa));

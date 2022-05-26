@@ -42,7 +42,7 @@ abstract class _ParkingSlotMobxCTRLBase with Store {
   }
 
   @action
-  insertVehicleParkingSlot(
+  Future<bool> insertVehicleParkingSlot(
       {required int numVaga, required String placa}) async {
     ParkingModel _dataInsert = ParkingModel();
     _dataInsert.empty = false;
@@ -59,6 +59,9 @@ abstract class _ParkingSlotMobxCTRLBase with Store {
       int _indexList = parkingSlotsList.indexWhere((e) => e.numVaga == numVaga);
 
       parkingSlotsList[_indexList] = _dataInsert;
+      return true;
+    } else {
+      return false;
     }
   }
 

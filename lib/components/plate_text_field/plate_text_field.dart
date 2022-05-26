@@ -11,10 +11,16 @@ class CustomPlateTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      // controller: passTextController,
+      controller: textEditingController,
       inputFormatters: [
         PlateInputFormatter(),
       ],
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Favor preencher uma placa';
+        }
+        return null;
+      },
       textAlign: TextAlign.center,
       style: GoogleFonts.play(color: Colors.white, fontSize: 24),
       decoration: InputDecoration(

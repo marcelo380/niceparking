@@ -75,6 +75,7 @@ class _HomePageState extends State<HomePage> {
                     context: context,
                     backgroundColor: Colors.transparent,
                     builder: (context) => ModalRegisterParkingSlot(
+                        parkingSlotMobxCTRL: parkingMobxCTRL!,
                         parkingModel: parkingMobxCTRL!.parkingSlotsList[index]),
                   );
                 },
