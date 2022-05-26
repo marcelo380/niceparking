@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:nice_parking/components/parking_slot_component/parking_slot_component.dart';
 import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
 import 'package:nice_parking/pages/home_page/modals/register_slot_parking.dart';
+import 'package:nice_parking/pages/home_page/modals/remove_slot_parking.dart';
 import 'package:nice_parking/utils/consts.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,6 +34,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Jiffy.locale("pt");
     int _lengthList = parkingMobxCTRL!.parkingSlotsList.length;
     return Scaffold(
       backgroundColor: black2,
@@ -48,10 +51,6 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        parkingMobxCTRL!
-            .insertVehicleParkingSlot(numVaga: 5, placa: "Marcelo Roberto");
-      }),
       body: Observer(builder: (_) {
         return Padding(
           padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
@@ -70,14 +69,22 @@ class _HomePageState extends State<HomePage> {
                 lengthList: _lengthList,
                 parkingSlotMobxCTRL: parkingMobxCTRL!,
                 onTap: () async {
-                  await showBarModalBottomSheet(
-                    expand: false,
-                    context: context,
-                    backgroundColor: Colors.transparent,
-                    builder: (context) => ModalRegisterParkingSlot(
-                        parkingSlotMobxCTRL: parkingMobxCTRL!,
-                        parkingModel: parkingMobxCTRL!.parkingSlotsList[index]),
-                  );
+                  if (parkingMobxCTRL!.parkingSlotsList[index].empty!) {
+                    await _showModal(
+                      ModalRegisterParkingSlot(
+                          parkingSlotMobxCTRL: parkingMobxCTRL!,
+                          parkingModel:
+                              parkingMobxCTRL!.parkingSlotsList[index]),
+                    );
+                  } else {
+                    await _showModal(
+                      ModalRemoveParkingSlot(
+                          parkingSlotMobxCTRL: parkingMobxCTRL!,
+                          parkingModel:
+                              parkingMobxCTRL!.parkingSlotsList[index]),
+                    );
+                    setState(() {});
+                  }
                 },
               );
             },
@@ -86,4 +93,11 @@ class _HomePageState extends State<HomePage> {
       }),
     );
   }
+
+  _showModal(modal) async => await showBarModalBottomSheet(
+        expand: false,
+        context: context,
+        backgroundColor: Colors.transparent,
+        builder: (context) => modal,
+      );
 }
