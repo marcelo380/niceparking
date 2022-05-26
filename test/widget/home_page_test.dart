@@ -14,10 +14,11 @@ main() {
       (WidgetTester tester) async {
     ParkingSlotMobxCTRL parkingSlotMobxCTRL = ParkingSlotMobxCTRL();
 
-    vagasListJson.forEach((element) {
+    for (var element in vagasListJson) {
       parkingSlotMobxCTRL.parkingSlotsList
           .add(ParkingModel.fromMap(json.decode(element)));
-    });
+    }
+
     var app = MediaQuery(
         data: const MediaQueryData(),
         child: MaterialApp(
@@ -38,10 +39,10 @@ main() {
       (WidgetTester tester) async {
     ParkingSlotMobxCTRL parkingSlotMobxCTRL = ParkingSlotMobxCTRL();
 
-    vagasListJson.forEach((element) {
+    for (var element in vagasListJson) {
       parkingSlotMobxCTRL.parkingSlotsList
           .add(ParkingModel.fromMap(json.decode(element)));
-    });
+    }
 
     parkingSlotMobxCTRL.parkingSlotsList[0].empty = true;
     var app = MediaQuery(

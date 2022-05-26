@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
 
-//ignore: must_be_immutable
 class ParkingSlotComponent extends StatelessWidget {
-  ParkingSlotMobxCTRL parkingSlotMobxCTRL;
-  int index;
-  int lengthList;
-  VoidCallback onTap;
-  ParkingSlotComponent(
+  final ParkingSlotMobxCTRL parkingSlotMobxCTRL;
+  final int index;
+  final int lengthList;
+  final VoidCallback onTap;
+  const ParkingSlotComponent(
       {required this.parkingSlotMobxCTRL,
       required this.index,
       required this.lengthList,
-      required this.onTap});
+      required this.onTap,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

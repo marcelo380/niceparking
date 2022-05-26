@@ -22,11 +22,11 @@ abstract class _ParkingSlotMobxCTRLBase with Store {
     List<Map> _resSelect = await ParkingSpacesRepository.instance
         .selectParkingSlots(inUse: true, mockDatabase: mockDatabase);
 
-    _resSelect.forEach((element) {
+    for (var element in _resSelect) {
       _listSelectParkingSlots.add(ParkingModel.fromMap(element));
-    });
+    }
 
-    mockVagas.forEach((numVaga) {
+    for (var numVaga in mockVagas) {
       List<ParkingModel> _selectEmptySlot = _listSelectParkingSlots
           .where((slot) => slot.numVaga == numVaga)
           .toList();
@@ -38,7 +38,7 @@ abstract class _ParkingSlotMobxCTRLBase with Store {
       } else {
         parkingSlotsList.add(ParkingModel(numVaga: numVaga));
       }
-    });
+    }
   }
 
   @action

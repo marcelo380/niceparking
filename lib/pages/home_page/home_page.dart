@@ -4,10 +4,9 @@ import 'package:nice_parking/components/parking_slot_component/parking_slot_comp
 import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
 import 'package:nice_parking/utils/consts.dart';
 
-//ignore: must_be_immutable
 class HomePage extends StatefulWidget {
-  ParkingSlotMobxCTRL? mockParkingSlotMobxCTRL;
-  HomePage({this.mockParkingSlotMobxCTRL, Key? key}) : super(key: key);
+  final ParkingSlotMobxCTRL? mockParkingSlotMobxCTRL;
+  const HomePage({this.mockParkingSlotMobxCTRL, Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
