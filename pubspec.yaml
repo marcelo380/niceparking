@@ -39,6 +39,8 @@ dependencies:
   flutter_mobx: ^2.0.6+1
   intl: ^0.17.0
   flutter_svg: ^1.0.1
+  modal_bottom_sheet: ^2.0.1
+  google_fonts: ^3.0.1
   
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nice_parking/utils/consts.dart';
 
 class CustomTypography {
+  static Text title28(
+    String content, {
+    Color color = Colors.white,
+    TextOverflow overFlow = TextOverflow.ellipsis,
+    TextAlign textAlign = TextAlign.left,
+  }) =>
+      _makeTextComponent(
+        content,
+        28.0,
+        FontWeight.w700,
+        color: color,
+        overFlow: overFlow,
+        align: textAlign,
+      );
+
   static Text title20(
     String content, {
     Color color = Colors.white,

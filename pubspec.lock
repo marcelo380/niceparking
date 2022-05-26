@@ -235,6 +235,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
+  google_fonts:
+    dependency: "direct main"
+    description:
+      name: google_fonts
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   graphs:
     dependency: transitive
     description:
@@ -242,6 +249,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.4"
   http_multi_server:
     dependency: transitive
     description:
@@ -340,6 +354,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.7"
+  modal_bottom_sheet:
+    dependency: "direct main"
+    description:
+      name: modal_bottom_sheet
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   package_config:
     dependency: transitive
     description:
@@ -641,4 +662,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.16.1 <3.0.0"
-  flutter: ">=2.8.0"
+  flutter: ">=2.10.0-0"
