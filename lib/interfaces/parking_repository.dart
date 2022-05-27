@@ -46,15 +46,15 @@ class ParkingSpacesRepository {
       _db = mockDatabase;
     }
     try {
-      var _resSelect = await ParkingSpacesRepository.instance
+      var _resSelectVerifySlotInUse = await ParkingSpacesRepository.instance
           .selectParkingSlots(numVaga: parkingModel.numVaga, mockDatabase: _db);
 
-      if (_resSelect.isEmpty) {
+      if (_resSelectVerifySlotInUse.isEmpty) {
         var _res = await _db.insert(
             DatabaseHelper.tableEstacionalmento, {...parkingModel.toMap()});
 
-        return Future.value(returnSucess("Vaga registrada com sucesso!",
-            data: _res.toString()));
+        return Future.value(
+            returnSucess("Vaga registrada com sucesso!", data: _res));
       } else {
         return Future.value(returnError("Vaga em uso!"));
       }

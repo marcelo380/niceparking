@@ -27,7 +27,7 @@ class EmptyState extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 24.0),
                 child: Icon(
                   icon,
-                  size: 200,
+                  size: 130,
                   color: greenPrimary1,
                 ),
               ),

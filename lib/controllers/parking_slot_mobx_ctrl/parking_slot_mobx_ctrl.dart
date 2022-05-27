@@ -54,7 +54,7 @@ abstract class _ParkingSlotMobxCTRLBase with Store {
         .insertVehicleParkingSlot(_dataInsert, mockDatabase: mockDatabase);
 
     if (_res.sucess) {
-      _dataInsert.codigo = int.parse(_res.data);
+      _dataInsert.codigo = _res.data;
 
       int _indexList = parkingSlotsList.indexWhere((e) => e.numVaga == numVaga);
 

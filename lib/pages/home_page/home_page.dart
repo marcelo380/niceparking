@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Jiffy.locale("pt");
-    int _lengthList = parkingMobxCTRL!.parkingSlotsList.length;
+
     return Scaffold(
       backgroundColor: black2,
       appBar: AppBar(
@@ -61,52 +61,57 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Observer(builder: (_) {
-        return Column(
-          children: [
-            _infoBox(),
-            Expanded(
-              child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-                child: GridView.builder(
-                  itemCount: parkingMobxCTRL!.parkingSlotsList.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 2,
+        return parkingMobxCTRL!.parkingSlotsList.isEmpty
+            ? const CircularProgressIndicator()
+            : Column(
+                children: [
+                  _infoBox(),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20.0, right: 20.0, top: 20.0),
+                      child: GridView.builder(
+                        itemCount: parkingMobxCTRL!.parkingSlotsList.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 2,
+                        ),
+                        itemBuilder: (
+                          context,
+                          index,
+                        ) {
+                          return ParkingSlotComponent(
+                            index: index,
+                            lengthList:
+                                parkingMobxCTRL!.parkingSlotsList.length,
+                            parkingSlotMobxCTRL: parkingMobxCTRL!,
+                            onTap: () async {
+                              if (parkingMobxCTRL!
+                                  .parkingSlotsList[index].empty!) {
+                                await _showModal(
+                                  ModalRegisterParkingSlot(
+                                      parkingSlotMobxCTRL: parkingMobxCTRL!,
+                                      parkingModel: parkingMobxCTRL!
+                                          .parkingSlotsList[index]),
+                                );
+                              } else {
+                                await _showModal(
+                                  ModalRemoveParkingSlot(
+                                      parkingSlotMobxCTRL: parkingMobxCTRL!,
+                                      parkingModel: parkingMobxCTRL!
+                                          .parkingSlotsList[index]),
+                                );
+                                setState(() {});
+                              }
+                            },
+                          );
+                        },
+                      ),
+                    ),
                   ),
-                  itemBuilder: (
-                    context,
-                    index,
-                  ) {
-                    return ParkingSlotComponent(
-                      index: index,
-                      lengthList: _lengthList,
-                      parkingSlotMobxCTRL: parkingMobxCTRL!,
-                      onTap: () async {
-                        if (parkingMobxCTRL!.parkingSlotsList[index].empty!) {
-                          await _showModal(
-                            ModalRegisterParkingSlot(
-                                parkingSlotMobxCTRL: parkingMobxCTRL!,
-                                parkingModel:
-                                    parkingMobxCTRL!.parkingSlotsList[index]),
-                          );
-                        } else {
-                          await _showModal(
-                            ModalRemoveParkingSlot(
-                                parkingSlotMobxCTRL: parkingMobxCTRL!,
-                                parkingModel:
-                                    parkingMobxCTRL!.parkingSlotsList[index]),
-                          );
-                          setState(() {});
-                        }
-                      },
-                    );
-                  },
-                ),
-              ),
-            ),
-          ],
-        );
+                ],
+              );
       }),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 32),
