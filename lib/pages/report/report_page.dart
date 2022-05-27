@@ -44,9 +44,9 @@ class _ReportPageState extends State<ReportPage> {
         child: ContainedButton(
             label: "Gerar relatório",
             onPressed: () async {
-              startDate = formatBR.parse(startDateTxCTRL.text);
-              endDate = formatBR.parse(endDateTxCTRL.text);
               if (_formKey.currentState!.validate()) {
+                startDate = formatBR.parse(startDateTxCTRL.text);
+                endDate = formatBR.parse(endDateTxCTRL.text);
                 await reportParkingSlotsMobxCTRL.report(
                     startDate: startDate!, endDate: endDate!);
               }

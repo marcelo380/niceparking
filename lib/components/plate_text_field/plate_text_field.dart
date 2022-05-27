@@ -11,6 +11,7 @@ class CustomPlateTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: true,
       controller: textEditingController,
       inputFormatters: [
         PlateInputFormatter(),
