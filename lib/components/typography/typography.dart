@@ -63,7 +63,6 @@ class CustomTypography {
   static Text body14(
     String content, {
     Color color = Colors.white,
-    TextOverflow overFlow = TextOverflow.ellipsis,
     TextAlign textAlign = TextAlign.left,
   }) =>
       _makeTextComponent(
@@ -71,7 +70,6 @@ class CustomTypography {
         14.0,
         FontWeight.w400,
         color: color,
-        overFlow: overFlow,
         align: textAlign,
       );
 
