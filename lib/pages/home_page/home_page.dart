@@ -6,6 +6,7 @@ import 'package:nice_parking/components/contained_button/contained_button.dart';
 import 'package:nice_parking/components/parking_slot_component/parking_slot_component.dart';
 import 'package:nice_parking/components/typography/typography.dart';
 import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
+import 'package:nice_parking/models/parking_model.dart';
 import 'package:nice_parking/pages/home_page/modals/register_slot_parking.dart';
 import 'package:nice_parking/pages/home_page/modals/remove_slot_parking.dart';
 import 'package:nice_parking/pages/report/report_page.dart';
@@ -45,11 +46,16 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         backgroundColor: black2,
         title: const Text("Nice Parking"),
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 10.0),
+            padding: const EdgeInsets.only(right: 10.0),
             child: Center(
-              child: Text("3/10", style: TextStyle(fontSize: 18)),
+              child: Observer(
+                builder: (_) => Text(
+                  _slotsInUse(),
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ),
             ),
           )
         ],
@@ -139,4 +145,17 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         builder: (context) => modal,
       );
+
+  String _slotsInUse() {
+    List<ParkingModel> _parkingSlotsList = parkingMobxCTRL!.parkingSlotsList;
+    if (parkingMobxCTRL!.parkingSlotsList.isNotEmpty) {
+      int _slotCount = _parkingSlotsList
+          .where((element) => element.empty == false)
+          .toList()
+          .length;
+      return "$_slotCount/${mockVagas.length}";
+    } else {
+      return "0/0";
+    }
+  }
 }
