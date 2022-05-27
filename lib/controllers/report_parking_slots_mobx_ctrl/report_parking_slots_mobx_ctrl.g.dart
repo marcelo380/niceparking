@@ -16,12 +16,12 @@ mixin _$ReportParkingSlotsMobxCTRL on _ReportParkingSlotsMobxCTRLBase, Store {
       (_$emptyStateComputed ??= Computed<bool>(() => super.emptyState,
               name: '_ReportParkingSlotsMobxCTRLBase.emptyState'))
           .value;
-  Computed<bool>? _$showSkeletonComputed;
+  Computed<bool>? _$noResultsComputed;
 
   @override
-  bool get showSkeleton =>
-      (_$showSkeletonComputed ??= Computed<bool>(() => super.showSkeleton,
-              name: '_ReportParkingSlotsMobxCTRLBase.showSkeleton'))
+  bool get noResults =>
+      (_$noResultsComputed ??= Computed<bool>(() => super.noResults,
+              name: '_ReportParkingSlotsMobxCTRLBase.noResults'))
           .value;
 
   late final _$parkinReportListAtom = Atom(
@@ -41,29 +41,43 @@ mixin _$ReportParkingSlotsMobxCTRL on _ReportParkingSlotsMobxCTRLBase, Store {
     });
   }
 
-  late final _$isLoadingAtom =
-      Atom(name: '_ReportParkingSlotsMobxCTRLBase.isLoading', context: context);
+  late final _$_noResultsAtom = Atom(
+      name: '_ReportParkingSlotsMobxCTRLBase._noResults', context: context);
 
   @override
-  bool get isLoading {
-    _$isLoadingAtom.reportRead();
-    return super.isLoading;
+  bool get _noResults {
+    _$_noResultsAtom.reportRead();
+    return super._noResults;
   }
 
   @override
-  set isLoading(bool value) {
-    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
-      super.isLoading = value;
+  set _noResults(bool value) {
+    _$_noResultsAtom.reportWrite(value, super._noResults, () {
+      super._noResults = value;
     });
+  }
+
+  late final _$_ReportParkingSlotsMobxCTRLBaseActionController =
+      ActionController(
+          name: '_ReportParkingSlotsMobxCTRLBase', context: context);
+
+  @override
+  void setNoResults(bool value) {
+    final _$actionInfo = _$_ReportParkingSlotsMobxCTRLBaseActionController
+        .startAction(name: '_ReportParkingSlotsMobxCTRLBase.setNoResults');
+    try {
+      return super.setNoResults(value);
+    } finally {
+      _$_ReportParkingSlotsMobxCTRLBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
   String toString() {
     return '''
 parkinReportList: ${parkinReportList},
-isLoading: ${isLoading},
 emptyState: ${emptyState},
-showSkeleton: ${showSkeleton}
+noResults: ${noResults}
     ''';
   }
 }

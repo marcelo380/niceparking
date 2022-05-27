@@ -44,6 +44,7 @@ dependencies:
   modal_bottom_sheet: ^2.0.1
   google_fonts: ^3.0.1
   jiffy: ^5.0.0
+  datetime_picker_formfield: ^2.0.0
   
 dev_dependencies:
   flutter_test:

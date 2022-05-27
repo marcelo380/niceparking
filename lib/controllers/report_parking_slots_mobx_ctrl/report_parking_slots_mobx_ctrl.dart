@@ -17,13 +17,18 @@ abstract class _ReportParkingSlotsMobxCTRLBase with Store {
   ObservableList<ParkingModel> parkinReportList = ObservableList();
 
   @observable
-  bool isLoading = false;
+  bool _noResults = false;
 
   @computed
-  bool get emptyState => parkinReportList.isEmpty && isLoading == false;
+  bool get emptyState => parkinReportList.isEmpty && _noResults == false;
 
   @computed
-  bool get showSkeleton => parkinReportList.isEmpty && isLoading == true;
+  bool get noResults => parkinReportList.isEmpty && _noResults == true;
+
+  @action
+  void setNoResults(bool value) {
+    _noResults = value;
+  }
 
   report({required DateTime startDate, required DateTime endDate}) async {
     parkinReportList.clear();
@@ -42,6 +47,12 @@ abstract class _ReportParkingSlotsMobxCTRLBase with Store {
       _res.data.forEach((e) {
         parkinReportList.add(ParkingModel.fromMap(e));
       });
+
+      if (parkinReportList.isNotEmpty) {
+        setNoResults(false);
+      } else {
+        setNoResults(true);
+      }
     }
   }
 }

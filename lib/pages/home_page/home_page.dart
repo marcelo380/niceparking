@@ -8,6 +8,7 @@ import 'package:nice_parking/components/typography/typography.dart';
 import 'package:nice_parking/controllers/parking_slot_mobx_ctrl/parking_slot_mobx_ctrl.dart';
 import 'package:nice_parking/pages/home_page/modals/register_slot_parking.dart';
 import 'package:nice_parking/pages/home_page/modals/remove_slot_parking.dart';
+import 'package:nice_parking/pages/report/report_page.dart';
 import 'package:nice_parking/utils/consts.dart';
 
 class HomePage extends StatefulWidget {
@@ -103,8 +104,11 @@ class _HomePageState extends State<HomePage> {
       }),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 32),
-        child:
-            ContainedButton(label: "Gerar relatório do dia", onPressed: () {}),
+        child: ContainedButton(
+          label: "Gerar relatório do dia",
+          onPressed: () => Navigator.push(
+              context, MaterialPageRoute(builder: (_) => const ReportPage())),
+        ),
       ),
     );
   }
