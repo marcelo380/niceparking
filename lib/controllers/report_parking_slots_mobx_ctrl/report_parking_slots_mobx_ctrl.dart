@@ -20,10 +20,13 @@ abstract class _ReportParkingSlotsMobxCTRLBase with Store {
   bool _noResults = false;
 
   @computed
-  bool get emptyState => parkinReportList.isEmpty && _noResults == false;
+  bool get emptyState => parkinReportList.isEmpty && !_noResults;
 
   @computed
-  bool get noResults => parkinReportList.isEmpty && _noResults == true;
+  bool get noResults => parkinReportList.isEmpty && _noResults;
+
+  @computed
+  bool get hasResults => parkinReportList.isNotEmpty && !_noResults;
 
   @action
   void setNoResults(bool value) {

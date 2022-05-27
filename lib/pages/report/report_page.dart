@@ -7,6 +7,7 @@ import 'package:nice_parking/components/date_field/date_field.dart';
 import 'package:nice_parking/components/empty_state/empty_state.dart';
 import 'package:nice_parking/components/typography/typography.dart';
 import 'package:nice_parking/controllers/report_parking_slots_mobx_ctrl/report_parking_slots_mobx_ctrl.dart';
+import 'package:nice_parking/pages/report/report_table.dart';
 import 'package:nice_parking/utils/consts.dart';
 
 class ReportPage extends StatefulWidget {
@@ -22,8 +23,9 @@ class _ReportPageState extends State<ReportPage> {
   TextEditingController endDateTxCTRL = TextEditingController();
   ReportParkingSlotsMobxCTRL reportParkingSlotsMobxCTRL =
       ReportParkingSlotsMobxCTRL();
-  final format = DateFormat("dd/MM/yyyy");
-  final outputFormat = DateFormat('MM-dd-yyyy hh:mm');
+
+  final formatBR = DateFormat("dd/MM/yyyy");
+  final outputUS = DateFormat('MM-dd-yyyy hh:mm');
   DateTime? startDate;
   DateTime? endDate;
 
@@ -42,8 +44,8 @@ class _ReportPageState extends State<ReportPage> {
         child: ContainedButton(
             label: "Gerar relatório",
             onPressed: () async {
-              startDate = format.parse(startDateTxCTRL.text);
-              endDate = format.parse(endDateTxCTRL.text);
+              startDate = formatBR.parse(startDateTxCTRL.text);
+              endDate = formatBR.parse(endDateTxCTRL.text);
               if (_formKey.currentState!.validate()) {
                 await reportParkingSlotsMobxCTRL.report(
                     startDate: startDate!, endDate: endDate!);
@@ -84,6 +86,9 @@ class _ReportPageState extends State<ReportPage> {
                             "Parece que não existem dados para as datas selecionadas.",
                         icon: Icons.browser_not_supported_outlined),
                   ),
+                if (reportParkingSlotsMobxCTRL.hasResults)
+                  DataTableReport(
+                      reportParkingSlotsMobxCTRL: reportParkingSlotsMobxCTRL),
               ],
             ),
           ),
